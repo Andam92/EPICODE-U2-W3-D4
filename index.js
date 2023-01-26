@@ -12,7 +12,7 @@ const fetchData = async function () {
         //ciclo l'array "data", che sarebbe il risultato di res.json quindi un oggetto legibile
         rowReference.innerHTML =
           rowReference.innerHTML + //aggiungo all'html un sample della car inserendo le proprietà di ogni singola card in modo da generarle dinamicamente
-          `<div id="element" class="col-sm-6 col-md-4 col-lg-3 mb-sm-3">
+          `<div id="${data.asin}" class="col-sm-6 col-md-4 col-lg-3 mb-sm-3">
           <div class="card row">
           
             <img src="${book.img}" class="card-img-top " alt="...">
@@ -22,7 +22,7 @@ const fetchData = async function () {
               <p class="card-text">
                 Price: ${book.price}
               </p> 
-               <a onclick="skipFunc()" id="button" class="btn btn-primary align-self-center">Skip</a>  
+               <button onclick="removeCard(event)" class="btn btn-primary align-self-center">Skip</button>  
                 </div>          
             </div>
           </div>
@@ -40,7 +40,6 @@ const fetchData = async function () {
 
 fetchData(); //eseguo il fetch
 
-let skipFunc = function () {
-  let elementToSkip = document.getElementById("element");
-  elementToSkip.classList.add("skip");
+let removeCard = function (e) {
+  e.target.parentElement.parentElement.parentElement.style.display = "none";
 };
